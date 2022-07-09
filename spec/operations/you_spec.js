@@ -1,20 +1,12 @@
-// TODO: This file was created by bulk-decaffeinate.
-// Sanity-check the conversion and remove this comment.
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const operation = require('../../lib/operations/you')
 
 describe('/you', function () {
-  it('should have the correct name', () => expect(operation.name).toEqual('Fuck You'))
+  it('should have the correct name', () => expect(operation.name).toEqual('You'))
 
-  it('should have the correct url', () => expect(operation.url).toEqual('/you/:name/:from'))
+  it('should have the correct url', () => expect(operation.url).toEqual('/you/:from'))
 
   it('should have the correct fields', () =>
     expect(operation.fields).toEqual([
-      { name: 'Name', field: 'name' },
       { name: 'From', field: 'from' }
     ])
   )
@@ -26,7 +18,7 @@ describe('/you', function () {
 
       operation.register(app, null)
 
-      expect(app.get).toHaveBeenCalledWith('/you/:name/:from', jasmine.any(Function))
+      expect(app.get).toHaveBeenCalledWith('/you/:from', jasmine.any(Function))
     })
 
     return it('should call output with correct params', function () {
@@ -38,18 +30,15 @@ describe('/you', function () {
 
       const req = {
         params: {
-          name: 'TESTNAME',
           from: 'TESTFROM'
         }
       }
 
+      const message = "You! You’re living proof it’s possible to live without a brain."
+      const subtitle = `- ${req.params.from}`
+
       func(req, 'RES')
-      return expect(output).toHaveBeenCalledWith(
-        req,
-        'RES',
-        'Fuck you, TESTNAME.',
-        '- TESTFROM'
-      )
+      return expect(output).toHaveBeenCalledWith(req, 'RES', message, subtitle)
     })
   })
 })
