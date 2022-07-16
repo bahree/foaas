@@ -1,13 +1,12 @@
-const operation = require('../../lib/operations/back')
+const operation = require('../../lib/operations/trophy')
 
-describe('/back', function () {
-  it('should have the correct name', () => expect(operation.name).toEqual('Back the fork off'))
+describe('/trophy', function () {
+  it('should have the correct name', () => expect(operation.name).toEqual('Trophy'))
 
-  it('should have the correct url', () => expect(operation.url).toEqual('/back/:name/:from'))
+  it('should have the correct url', () => expect(operation.url).toEqual('/trophy/:from'))
 
   it('should have the correct fields', () =>
     expect(operation.fields).toEqual([
-      { name: 'Name', field: 'name' },
       { name: 'From', field: 'from' }
     ])
   )
@@ -19,10 +18,10 @@ describe('/back', function () {
 
       operation.register(app, null)
 
-      expect(app.get).toHaveBeenCalledWith('/back/:name/:from', jasmine.any(Function))
+      expect(app.get).toHaveBeenCalledWith('/trophy/:from', jasmine.any(Function))
     })
 
-    return it('should call outoput with correct params', function () {
+    return it('should call output with correct params', function () {
       let func = null
       const app =
         { get (url, fn) { return func = fn } }
@@ -31,7 +30,6 @@ describe('/back', function () {
 
       const req = {
         params: {
-          name: 'TESTNAME',
           from: 'TESTFROM'
         }
       }
@@ -40,7 +38,7 @@ describe('/back', function () {
       return expect(output).toHaveBeenCalledWith(
         req,
         'RES',
-        'TESTNAME, back the fork off.',
+        'If you were an inanimate object, you’d be a participation trophy.',
         '- TESTFROM'
       )
     })

@@ -1,16 +1,9 @@
-// TODO: This file was created by bulk-decaffeinate.
-// Sanity-check the conversion and remove this comment.
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
-const operation = require('../../lib/operations/family')
+const operation = require('../../lib/operations/slap')
 
-describe('/family', function () {
-  it('should have the correct name', () => expect(operation.name).toEqual('Family'))
+describe('/slap', function () {
+  it('should have the correct name', () => expect(operation.name).toEqual('Slap'))
 
-  it('should have the correct url', () => expect(operation.url).toEqual('/family/:from'))
+  it('should have the correct url', () => expect(operation.url).toEqual('/slap/:from'))
 
   it('should have the correct fields', () =>
     expect(operation.fields).toEqual([
@@ -25,7 +18,7 @@ describe('/family', function () {
 
       operation.register(app, null)
 
-      expect(app.get).toHaveBeenCalledWith('/family/:from', jasmine.any(Function))
+      expect(app.get).toHaveBeenCalledWith('/slap/:from', jasmine.any(Function))
     })
 
     return it('should call output with correct params', function () {
@@ -41,7 +34,7 @@ describe('/family', function () {
         }
       }
 
-      const message = 'fork you, your whole family, your pets, and your feces.'
+      const message = "I will slap you so hard even Google won’t be able to find you."
       const subtitle = `- ${req.params.from}`
 
       func(req, 'RES')
