@@ -37,3 +37,4 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./traefik/letsencrypt:/etc/acme/pfoaas"
       - "./traefik/traefik.yml:/etc/traefik/traefik.yml"
+      
