@@ -1,0 +1,54 @@
+# traefik.yml
+api:
+  dashboard: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+providers:
+  docker:
+    exposedByDefault: false
+
+certificatesResolvers:
+  tmhttpchallenge:
+    acme:
+      email: bahree@gmail.com
+      storage: /etc/acme/pfoaas/acme.json
+      httpChallenge:
+        entryPoint: web
+
+tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+      maxVersion: VersionTLS13
+
+# ===============================
+# Other example
+# # traefik.yml
+# entryPoints:
+#   web:
+#     address: ":80"
+#   websecure:
+#     address: ":443"
+
+# providers:
+#   docker:
+#     exposedByDefault: false
+
+# certificatesResolvers:
+#   tmhttpchallenge:
+#     acme:
+#       email: bahree@gmail.com
+#       storage: /etc/acme/acme.json
+#       httpChallenge:
+#         entryPoint: web
+
+# tls:
+#   options:
+#     default:
+#       minVersion: VersionTLS12
+#       maxVersion: VersionTLS13
