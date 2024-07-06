@@ -27,13 +27,17 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies.
-RUN npm install --production
+RUN npm install
+
+# Expose the port the app runs on
+EXPOSE 5000
 
 # Copy local code to the container image.
 COPY . .
 
+# Switch to a non-root user
+USER node
+
 # Run the web service on container startup.
 CMD [ "npm", "start" ]
 
-# Expose the port the app runs on
-EXPOSE 5000
