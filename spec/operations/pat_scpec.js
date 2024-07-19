@@ -1,7 +1,7 @@
 const operation = require('../../lib/operations/pat')
 
 describe('/pat', function () {
-  it('should have the correct name', () => expect(operation.name).toEqual('Genius'))
+  it('should have the correct name', () => expect(operation.name).toEqual('Pat'))
 
 //   it('should have the correct url', () => expect(operation.url).toEqual('/genius/:from'))
 
