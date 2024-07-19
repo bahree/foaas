@@ -3,13 +3,13 @@ const operation = require('../../lib/operations/pat')
 describe('/pat', function () {
   it('should have the correct name', () => expect(operation.name).toEqual('Pat'))
 
-//   it('should have the correct url', () => expect(operation.url).toEqual('/Pat/:from'))
+  it('should have the correct url', () => expect(operation.url).toEqual('/pat/:from'))
 
-//   it('should have the correct fields', () =>
-//     expect(operation.fields).toEqual([
-//       { name: 'From', field: 'from' }
-//     ])
-//   )
+  it('should have the correct fields', () =>
+    expect(operation.fields).toEqual([
+      { name: 'From', field: 'from' }
+    ])
+  )
 
   return describe('register', function () {
     it('should call app.get with correct url', function () {
@@ -18,7 +18,7 @@ describe('/pat', function () {
 
       operation.register(app, null)
 
-      expect(app.get).toHaveBeenCalledWith('/pat', jasmine.any(Function))
+      expect(app.get).toHaveBeenCalledWith('/pat/:from', jasmine.any(Function))
     })
 
     return it('should call output with correct params', function () {
@@ -35,10 +35,10 @@ describe('/pat', function () {
       }
 
       const message = 'Here is a pat on the back for doing the absolute minimum.'
-    //   const subtitle = `- ${req.params.from}`
+      const subtitle = `- ${req.params.from}`
 
       func(req, 'RES')
-      return expect(output).toHaveBeenCalledWith(req, 'RES', message)
+      return expect(output).toHaveBeenCalledWith(req, 'RES', message, subtitle)
     })
   })
 })
