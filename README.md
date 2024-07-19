@@ -1,6 +1,6 @@
 # PFOaaS
 
-*Dec 2022 - v0.0.14*
+*July 2024 - v0.0.15*
 
 PFOaaS (Polite Fork Off As A Service) provides a modern, RESTful, scalable solution to the common problem of telling people to fork off.
 
@@ -12,6 +12,9 @@ Please see https://pfoaas.desigeek.com for API documentation and examples.
 
     docker build -t foaas:1 .
     docker run -v $(pwd):/usr/src/app -p 5000:5000 foaas:1
+
+# Docker
+    image: amitbahree/pfoaas:latest
 
 # Contributing
 
