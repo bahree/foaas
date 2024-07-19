@@ -1,9 +1,9 @@
 const operation = require('../../lib/operations/genius')
 
 describe('/genius', function () {
-  it('should have the correct name', () => expect(operation.name).toEqual('Hello'))
+  it('should have the correct name', () => expect(operation.name).toEqual('Genius'))
 
-  it('should have the correct url', () => expect(operation.url).toEqual('/hello/:from'))
+  it('should have the correct url', () => expect(operation.url).toEqual('/genius/:from'))
 
   it('should have the correct fields', () =>
     expect(operation.fields).toEqual([
@@ -34,7 +34,7 @@ describe('/genius', function () {
         }
       }
 
-      const message = 'Wow, you are a real genius. Can you explain quantum mechanics next?'
+      const message = 'Wow, you are a real genius. Can you please explain quantum mechanics next?'
       const subtitle = `- ${req.params.from}`
 
       func(req, 'RES')
