@@ -1,15 +1,15 @@
 const operation = require('../../lib/operations/genius')
 
 describe('/genius', function () {
-  it('should have the correct name', () => expect(operation.name).toEqual('Genius'))
+  it('should have the correct name', () => expect(operation.name).toEqual('Hello'))
 
-  //it('should have the correct url', () => expect(operation.url).toEqual('/hello/:from'))
+  it('should have the correct url', () => expect(operation.url).toEqual('/hello/:from'))
 
-  // it('should have the correct fields', () =>
-  //   expect(operation.fields).toEqual([
-  //     { name: 'From', field: 'from' }
-  //   ])
-  // )
+  it('should have the correct fields', () =>
+    expect(operation.fields).toEqual([
+      { name: 'From', field: 'from' }
+    ])
+  )
 
   return describe('register', function () {
     it('should call app.get with correct url', function () {
@@ -18,7 +18,7 @@ describe('/genius', function () {
 
       operation.register(app, null)
 
-      expect(app.get).toHaveBeenCalledWith('/genius', jasmine.any(Function))
+      expect(app.get).toHaveBeenCalledWith('/genius/:from', jasmine.any(Function))
     })
 
     return it('should call output with correct params', function () {
@@ -35,9 +35,10 @@ describe('/genius', function () {
       }
 
       const message = 'Wow, you are a real genius. Can you explain quantum mechanics next?'
+      const subtitle = `- ${req.params.from}`
 
       func(req, 'RES')
-      return expect(output).toHaveBeenCalledWith(req, 'RES', message)
+      return expect(output).toHaveBeenCalledWith(req, 'RES', message, subtitle)
     })
   })
 })
