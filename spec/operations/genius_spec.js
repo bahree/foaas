@@ -35,10 +35,9 @@ describe('/genius', function () {
       }
 
       const message = 'Wow, you are a real genius. Can you explain quantum mechanics next?'
-      const subtitle = `- ${req.params.from}`
 
       func(req, 'RES')
-      return expect(output).toHaveBeenCalledWith(req, 'RES', message, subtitle)
+      return expect(output).toHaveBeenCalledWith(req, 'RES', message)
     })
   })
 })
