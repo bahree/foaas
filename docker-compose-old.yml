@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  pfoaas:
+    build: .
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=5000 # Ensure your app uses this environment variable to set the port
+    volumes:
+      - .:/usr/src/app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=5000"
+      - "traefik.http.middlewares.redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.pfoaas-insecure.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.pfoaas-insecure.middlewares=redirect"
+      - "traefik.http.routers.pfoaas.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.pfoaas.entrypoints=websecure"
+      - "traefik.http.routers.pfoaas.tls.certresolver=tmhttpchallenge"
+
+  traefik:
+    image: traefik:v2.5
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.tmhttpchallenge.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.tmhttpchallenge.acme.email=${EMAIL}"
+      - "--certificatesresolvers.tmhttpchallenge.acme.storage=/etc/acme/pfoaas/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"  # Expose the Traefik dashboard port
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik/letsencrypt:/etc/acme/pfoaas"
+      - "./traefik/traefik.yml:/etc/traefik/traefik.yml"
+      

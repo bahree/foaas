@@ -1,6 +1,6 @@
 # PFOaaS
 
-*July 2024 - v0.0.15*
+*November 2024 - v0.1*
 
 PFOaaS (Polite Fork Off As A Service) provides a modern, RESTful, scalable solution to the common problem of telling people to fork off.
 
