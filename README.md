@@ -47,6 +47,10 @@ The Docker image for this project is also available on Docker Hub. You can pull 
 
     docker pull amitbahree/pfoaas
 
+Example no how to run this:
+
+    docker run -d -p 5000:5000 amitbahree/pfoaas
+
 For more details, visit the [Docker Hub repository](https://hub.docker.com/repository/docker/amitbahree/pfoaas/general).
 
 # Contributing
